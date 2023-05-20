@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pusdiklat - Login</title>
+        <link rel="icon" href="{{ url_for('static', filename='img/logoweb.ico') }}" type="image/x-icon">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- Custom styles -->
+    <style>
+        body {
+            background-image:url({{ url_for('static', filename='img/billboard-1.jpg') }}) ;
+            background-size: cover;
+            background-position: center;
+            opacity:0.8;
+
+        }
+
+        .login-container {
+            margin-top: 150px;
+            max-width: 400px;
+            background-color: #f8f9fc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container .login-logo {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .login-container .login-logo img {
+            width: 150px;
+            height: auto;
+        }
+
+        .login-container .login-form {
+            padding: 20px;
+        }
+
+        .login-container .login-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .login-container .login-form .form-group label {
+            font-weight: bold;
+        }
+
+        .login-container .login-form .btn-login {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <img src="{{url_for('static', filename='img/logopojok.png')}}" alt="Logo" width="251" height="66">
+            <!-- Menu navigasi atau konten lainnya -->
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto login-container">
+                <div class="login-logo">
+                    <img src="{{ url_for('static', filename='img/logosetjen.png') }}" alt="Logo">
+                </div>
+                <div class="login-form">
+                    <h3 class="text-center mb-4">Login</h3>
+                    {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                    {% endif %}
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" name="password" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-eye" id="password-toggle"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-login">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+<script>
+     $(document).ready(function() {
+            // Mengubah tipe input menjadi 'text' saat ikon mata di klik
+            $('#password-toggle').click(function() {
+                var passwordInput = $('#password');
+                var passwordToggle = $(this);
+
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    passwordToggle.removeClass('fa-eye');
+                    passwordToggle.addClass('fa-eye-slash');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    passwordToggle.removeClass('fa-eye-slash');
+                    passwordToggle.addClass('fa-eye');
+                }
+            });
+        });
+</script>
+</html>
+
